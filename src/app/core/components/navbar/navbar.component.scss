@@ -1,0 +1,343 @@
+/*
+  NAVBAR COMPONENT STYLES
+
+  This stylesheet demonstrates:
+  1. SCSS Variables and Mixins
+  2. CSS Custom Properties (CSS Variables)
+  3. Responsive Design
+  4. Theme Support (Light/Dark Mode)
+  5. Modern CSS Techniques (Flexbox, Grid)
+  6. Accessibility Considerations
+  7. Animation and Transitions
+*/
+
+// SCSS VARIABLES
+// These are compile-time constants that get replaced during build
+$navbar-height: 60px;
+$brand-font-size: 1.25rem;
+$nav-link-font-size: 0.9rem;
+$mobile-breakpoint: 768px;
+$tablet-breakpoint: 1024px;
+
+// MIXINS
+// Reusable code blocks that can be included in other selectors
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin smooth-transition($properties: all, $duration: 0.3s) {
+  transition: $properties $duration ease-in-out;
+}
+
+@mixin hover-lift {
+  @include smooth-transition(transform);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// MAIN NAVBAR CONTAINER
+.navbar {
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $navbar-height;
+  padding: 0 1rem;
+
+  // Theming with CSS Custom Properties
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  color: var(--navbar-text);
+
+  // Box shadow for depth
+  box-shadow: var(--shadow-sm);
+
+  // Positioning
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; // Ensure navbar stays above other content
+
+  // Smooth transitions for theme changes
+  @include smooth-transition((background-color, border-color, color));
+
+  // RESPONSIVE DESIGN
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0 0.5rem;
+    height: 56px; // Slightly smaller on mobile
+  }
+}
+
+// BRAND/LOGO SECTION
+.navbar-brand {
+  .brand-link {
+    @include flex-center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    font-size: $brand-font-size;
+    @include hover-lift;
+
+    .brand-icon {
+      font-size: 1.5rem;
+      // Add subtle animation
+      @include smooth-transition(transform);
+
+      &:hover {
+        transform: rotate(15deg) scale(1.1);
+      }
+    }
+
+    .brand-text {
+      // Hide brand text on very small screens
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
+  }
+}
+
+// NAVIGATION LINKS
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .nav-item {
+    .nav-link {
+      @include flex-center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: var(--nav-link-color);
+      font-size: $nav-link-font-size;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      @include smooth-transition();
+
+      // Icon styling
+      .nav-icon {
+        font-size: 1.1rem;
+      }
+
+      // Label styling
+      .nav-label {
+        // Hide labels on small screens, show only icons
+        @media (max-width: $mobile-breakpoint) {
+          display: none;
+        }
+      }
+
+      // Hover states
+      &:hover {
+        background-color: var(--nav-link-hover-bg);
+        color: var(--nav-link-hover-color);
+        transform: translateY(-1px);
+      }
+
+      // Active state
+      &.active {
+        background-color: var(--nav-link-active-bg);
+        color: var(--nav-link-active-color);
+
+        &:hover {
+          background-color: var(--nav-link-active-hover-bg);
+        }
+      }
+
+      // Focus states for accessibility
+      &:focus {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Mobile responsive - stack vertically if needed
+  @media (max-width: $mobile-breakpoint) {
+    gap: 0.25rem;
+  }
+}
+
+// UTILITIES SECTION (Theme toggle, loading, etc.)
+.navbar-utilities {
+  @include flex-center;
+  gap: 1rem;
+
+  @media (max-width: $mobile-breakpoint) {
+    gap: 0.5rem;
+  }
+}
+
+// LOADING INDICATOR
+.loading-indicator {
+  @include flex-center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--loading-bg);
+  color: var(--loading-color);
+  border-radius: 1rem;
+  font-size: 0.875rem;
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .loading-text {
+    // Hide text on very small screens
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+}
+
+// THEME TOGGLE BUTTON
+.theme-toggle-btn {
+  @include flex-center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 0.375rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  @include smooth-transition();
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+
+  .theme-icon {
+    font-size: 1rem;
+  }
+
+  .theme-label {
+    // Hide label on small screens
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+}
+
+// MOBILE MENU TOGGLE (for future implementation)
+.mobile-menu-toggle {
+  display: none; // Hidden by default, show when needed
+  @include flex-center;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  @include smooth-transition();
+
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 1px;
+    @include smooth-transition(transform);
+  }
+
+  &:hover {
+    .hamburger-line {
+      transform: scaleX(1.1);
+    }
+  }
+
+  &:focus {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+
+  // Show on very small screens if needed
+  @media (max-width: 480px) {
+    // display: flex; // Uncomment when mobile menu is implemented
+  }
+}
+
+// ANIMATIONS
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// ACCESSIBILITY IMPROVEMENTS
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .nav-link,
+  .theme-toggle-btn,
+  .brand-icon,
+  .spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+// HIGH CONTRAST MODE
+@media (prefers-contrast: high) {
+  .navbar {
+    border-bottom-width: 2px;
+  }
+
+  .nav-link {
+    border: 1px solid transparent;
+
+    &:focus,
+    &.active {
+      border-color: currentColor;
+    }
+  }
+
+  .theme-toggle-btn {
+    border-width: 2px;
+  }
+}
+
+/*
+  SCSS FEATURES DEMONSTRATED:
+
+  1. Variables: $navbar-height, $mobile-breakpoint
+  2. Mixins: @mixin flex-center, @mixin smooth-transition
+  3. Nesting: .navbar { .brand-link { } }
+  4. Parent Selector: &:hover, &.active
+  5. Interpolation: Used in calculations and dynamic values
+  6. Functions: Built-in functions like rgba()
+  7. Conditionals: @media queries
+  8. Imports: @import (would be used for external files)
+
+  CSS CUSTOM PROPERTIES BENEFITS:
+  - Can be changed at runtime with JavaScript
+  - Cascade and inherit like normal CSS properties
+  - Perfect for theming
+  - Better browser support than SCSS variables at runtime
+
+  ACCESSIBILITY FEATURES:
+  - Focus indicators
+  - High contrast mode support
+  - Reduced motion support
+  - ARIA labels in HTML
+  - Proper color contrast ratios
+*/

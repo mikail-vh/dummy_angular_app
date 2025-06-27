@@ -1,0 +1,254 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+}
+
+.stats-section {
+  margin-bottom: 3rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-hover-shadow);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-change {
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    &.positive {
+      color: var(--success);
+    }
+
+    &.negative {
+      color: var(--error);
+    }
+  }
+
+  // Color variants
+  &--blue .stat-icon {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary-600);
+  }
+
+  &--green .stat-icon {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+
+  &--orange .stat-icon {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+  }
+
+  &--purple .stat-icon {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+}
+
+.chart-section {
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .chart-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+
+    .legend-label {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .legend-value {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+  }
+
+  .simple-chart {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    height: 200px;
+
+    .chart-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+        transform: scaleY(1.05);
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .dashboard-header {
+    .page-title {
+      font-size: 2rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+
+    .stat-icon {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .chart-legend {
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .chart-container {
+    padding: 1rem;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .chart-bar {
+    transition: none;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .stat-card,
+  .chart-container {
+    border-width: 2px;
+  }
+
+  .stat-card {
+    &--blue .stat-icon {
+      background-color: rgba(59, 130, 246, 0.3);
+    }
+
+    &--green .stat-icon {
+      background-color: rgba(16, 185, 129, 0.3);
+    }
+
+    &--orange .stat-icon {
+      background-color: rgba(245, 158, 11, 0.3);
+    }
+
+    &--purple .stat-icon {
+      background-color: rgba(139, 92, 246, 0.3);
+    }
+  }
+}

@@ -1,0 +1,150 @@
+<!--
+  NAVBAR COMPONENT TEMPLATE
+
+  This template demonstrates key Angular template features:
+  1. Structural Directives (*ngFor, *ngIf)
+  2. Attribute Directives ([class], [routerLink])
+  3. Event Binding ((click))
+  4. Property Interpolation ({{ }})
+  5. Async Pipe (| async)
+  6. Conditional CSS classes
+-->
+
+<nav class="navbar">
+
+  <!-- BRAND/LOGO SECTION -->
+  <div class="navbar-brand">
+    <a routerLink="/" class="brand-link">
+      <span class="brand-icon">🚀</span>
+      <span class="brand-text">Learning App</span>
+    </a>
+  </div>
+
+  <!-- NAVIGATION LINKS SECTION -->
+  <!--
+    *ngFor Structural Directive:
+    - Repeats the template for each item in navigationItems array
+    - Creates a local template variable 'item' for each iteration
+    - Provides index and other useful variables (first, last, even, odd)
+  -->
+  <ul class="navbar-links">
+    <li
+      *ngFor="let item of navigationItems; trackBy: trackByPath"
+      class="nav-item"
+    >
+      <!--
+        RouterLink Directive:
+        - [routerLink] property binding sets the navigation target
+        - routerLinkActive automatically adds CSS class when route is active
+        - We can also manually check with isRouteActive() method
+      -->
+      <a
+        [routerLink]="item.path"
+        [class.active]="isRouteActive(item.path)"
+        class="nav-link"
+        [title]="item.description"
+        (click)="onNavigationItemClick(item)"
+      >
+        <!--
+          Conditional rendering with *ngIf:
+          - Only shows icon if item has one
+          - Uses safe navigation operator (?.) to prevent errors
+        -->
+        <span *ngIf="item.icon" class="nav-icon">{{ item.icon }}</span>
+
+        <!--
+          Property Interpolation:
+          - {{ }} syntax evaluates the expression and displays the result
+          - Automatically escapes HTML for security
+        -->
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- THEME TOGGLE AND UTILITIES SECTION -->
+  <div class="navbar-utilities">
+
+    <!-- LOADING INDICATOR -->
+    <!--
+      Async Pipe:
+      - Automatically subscribes to the Observable
+      - Updates when the Observable emits new values
+      - Automatically unsubscribes when component is destroyed
+      - Prevents memory leaks and reduces boilerplate
+    -->
+    <div
+      *ngIf="isNavigating$ | async"
+      class="loading-indicator"
+      aria-label="Navigation in progress"
+    >
+      <div class="spinner"></div>
+      <span class="loading-text">Loading...</span>
+    </div>
+
+    <!-- THEME TOGGLE BUTTON -->
+    <!--
+      Event Binding:
+      - (click) binds to the click event
+      - Calls the onToggleTheme() method when clicked
+      - Can pass parameters: (click)="method($event, param)"
+    -->
+    <button
+      (click)="onToggleTheme()"
+      class="theme-toggle-btn"
+      [attr.aria-label]="'Switch to ' + getThemeLabel()"
+      type="button"
+    >
+      <!--
+        Method Calls in Templates:
+        - getThemeIcon() is called every change detection cycle
+        - For expensive operations, use pipes or OnPush change detection
+      -->
+      <span class="theme-icon">{{ getThemeIcon() }}</span>
+      <span class="theme-label">{{ getThemeLabel() }}</span>
+    </button>
+
+    <!-- MOBILE MENU TOGGLE (for future mobile implementation) -->
+    <button
+      class="mobile-menu-toggle"
+      type="button"
+      aria-label="Toggle mobile menu"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+
+</nav>
+
+<!--
+  ADDITIONAL TEMPLATE FEATURES EXAMPLES:
+
+  1. Safe Navigation Operator:
+  <span>{{ user?.profile?.name }}</span>
+
+  2. Conditional Attributes:
+  <input [attr.disabled]="isDisabled ? true : null">
+
+  3. Multiple CSS Classes:
+  <div [class]="'base-class ' + dynamicClass"></div>
+  <div [ngClass]="{ 'active': isActive, 'disabled': isDisabled }"></div>
+
+  4. Template Reference Variables:
+  <input #nameInput type="text">
+  <button (click)="submit(nameInput.value)">Submit</button>
+
+  5. Pipes with Parameters:
+  <span>{{ date | date:'MM/dd/yyyy' }}</span>
+  <span>{{ price | currency:'USD':'symbol':'1.2-2' }}</span>
+
+  6. Event Object:
+  <input (keyup.enter)="search($event.target.value)">
+
+  7. Prevent Default:
+  <form (ngSubmit)="onSubmit($event)">
+
+  8. Two-way Binding:
+  <input [(ngModel)]="searchTerm" placeholder="Search...">
+-->

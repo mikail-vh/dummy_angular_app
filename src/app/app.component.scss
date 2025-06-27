@@ -1,0 +1,70 @@
+/*
+  APP COMPONENT STYLES
+
+  This file contains the root level styles for the application.
+  These styles affect the overall layout and structure.
+*/
+
+// Root layout
+:host {
+  display: block;
+  min-height: 100vh;
+
+  // CSS Custom Properties for theming
+  --app-background: #ffffff;
+  --app-text: #2d3748;
+
+  // Apply theme variables
+  background-color: var(--app-background);
+  color: var(--app-text);
+
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease-in-out;
+}
+
+// Main content area
+.main-content {
+  // Ensure content doesn't overlap with fixed navbar
+  padding-top: 0; // Navbar is not fixed in this example
+  min-height: calc(100vh - 60px); // Account for navbar height
+
+  // Layout properties
+  display: block;
+  width: 100%;
+
+  // Smooth transitions
+  transition: all 0.3s ease-in-out;
+}
+
+// Dark theme support
+:host-context(.dark-theme) {
+  --app-background: #1a202c;
+  --app-text: #f7fafc;
+}
+
+// Global overrides for dark theme
+:global(.dark-theme) {
+  // Apply dark theme to body if needed
+  body {
+    background-color: #1a202c;
+    color: #f7fafc;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .main-content {
+    // Adjust for mobile navbar if different height
+    min-height: calc(100vh - 56px);
+  }
+}
+
+/*
+  HOST SELECTOR EXPLANATION:
+
+  :host - Selects the component's host element (app-root)
+  :host-context() - Selects based on ancestor classes
+
+  This allows the component to style itself based on
+  external conditions like theme classes on document.
+*/

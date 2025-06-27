@@ -1,0 +1,409 @@
+/*
+  HOME COMPONENT STYLES
+
+  This stylesheet demonstrates:
+  1. Modern CSS Grid and Flexbox layouts
+  2. CSS Custom Properties for theming
+  3. Responsive design patterns
+  4. Animation and transitions
+  5. Accessibility considerations
+*/
+
+// Component Variables
+$section-spacing: 4rem;
+$card-border-radius: 12px;
+$transition-timing: 0.3s ease-in-out;
+
+// Mixins
+@mixin card-hover {
+  transition: transform $transition-timing, box-shadow $transition-timing;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+  }
+}
+
+@mixin section-spacing {
+  padding: $section-spacing 0;
+}
+
+// Main Container
+.home-container {
+  min-height: calc(100vh - 60px); // Account for navbar height
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+// Hero Section
+.hero-section {
+  @include section-spacing;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .hero-welcome {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    backdrop-filter: blur(5px);
+  }
+
+  .theme-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .theme-status {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .theme-toggle-btn {
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all $transition-timing;
+      backdrop-filter: blur(5px);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Features Section
+.features-section {
+  @include section-spacing;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .feature-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    border-radius: $card-border-radius;
+    cursor: pointer;
+    @include card-hover;
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .feature-number {
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .feature-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      .tech-tag {
+        padding: 0.25rem 0.5rem;
+        background-color: var(--bg-secondary);
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+// Getting Started Section
+.getting-started-section {
+  @include section-spacing;
+  background-color: var(--bg-secondary);
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+  }
+
+  .steps-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+
+    .step-number {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+
+      .step-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .step-description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .step-code {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: var(--bg-secondary);
+        border-radius: 0.25rem;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+      }
+    }
+  }
+}
+
+// Learning Resources Section
+.resources-section {
+  @include section-spacing;
+  background-color: var(--bg-primary);
+
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+
+
+  .resource-link-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .resource-link {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary-600);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      color: var(--primary-700);
+      text-decoration: none;
+      border: 1px solid var(--primary-700);
+      transform: scale(1.05);
+    }
+  }
+
+  .resource-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .resource-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .resource-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .resource-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    @include card-hover;
+
+
+  }
+}
+
+// RESPONSIVE DESIGN
+@media (max-width: 768px) {
+  .home-container {
+    min-height: calc(100vh - 56px); // Account for smaller mobile navbar
+  }
+
+  .hero-section {
+    padding: 2rem 0;
+
+    .hero-content {
+      padding: 0 1rem;
+    }
+
+    .hero-welcome {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .features-section,
+  .getting-started-section,
+  .resources-section {
+    padding: 2rem 0;
+
+    .features-grid,
+    .resources-grid {
+      padding: 0 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    .steps-container {
+      padding: 0 1rem;
+    }
+  }
+
+  .step-item {
+    flex-direction: column;
+    text-align: center;
+
+    .step-number {
+      align-self: center;
+    }
+  }
+}
+
+// ACCESSIBILITY
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .resource-card,
+  .theme-toggle-btn {
+    transition: none;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// HIGH CONTRAST MODE
+@media (prefers-contrast: high) {
+  .feature-card,
+  .resource-card,
+  .step-item {
+    border-width: 2px;
+  }
+
+  .hero-section {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}

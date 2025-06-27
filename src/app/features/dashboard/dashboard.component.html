@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1 class="page-title">{{ pageTitle }}</h1>
+    <p class="page-subtitle">Monitor your key metrics and performance indicators</p>
+  </header>
+
+  <!-- Statistics Cards -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div
+        *ngFor="let stat of stats; trackBy: trackByTitle"
+        class="stat-card"
+        [class]="'stat-card--' + stat.color"
+      >
+        <div class="stat-icon">{{ stat.icon }}</div>
+        <div class="stat-content">
+          <h3 class="stat-title">{{ stat.title }}</h3>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-change" [class]="getChangeClass(stat.change)">
+            <span class="change-icon">{{ getChangeIcon(stat.change) }}</span>
+            <span class="change-value">{{ stat.change }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chart Section -->
+  <section class="chart-section">
+    <h2 class="section-title">Usage Distribution</h2>
+    <div class="chart-container">
+      <div class="chart-legend">
+        <div
+          *ngFor="let item of chartData"
+          class="legend-item"
+        >
+          <div
+            class="legend-color"
+            [style.background-color]="item.color"
+          ></div>
+          <span class="legend-label">{{ item.label }}</span>
+          <span class="legend-value">{{ getPercentage(item.value) }}%</span>
+        </div>
+      </div>
+
+      <div class="simple-chart">
+        <div
+          *ngFor="let item of chartData"
+          class="chart-bar"
+          [style.height.%]="getPercentage(item.value)"
+          [style.background-color]="item.color"
+          [title]="item.label + ': ' + getPercentage(item.value) + '%'"
+        ></div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,183 @@
+<!--
+  HOME COMPONENT TEMPLATE
+
+  This template demonstrates:
+  1. Template Interpolation {{ }}
+  2. Property Binding [property]
+  3. Event Binding (event)
+  4. Structural Directives *ngFor
+  5. CSS Class Binding [class]
+  6. Conditional Content *ngIf
+-->
+
+<div class="home-container">
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <!--
+        INTERPOLATION EXAMPLES:
+        {{ }} syntax evaluates expressions and displays results
+        These are automatically updated when component properties change
+      -->
+      <h1 class="hero-title">{{ appTitle }}</h1>
+      <p class="hero-description">{{ appDescription }}</p>
+
+      <!--
+        METHOD CALLS IN TEMPLATES:
+        You can call component methods directly in templates
+        Be careful with performance - these are called on every change detection cycle
+      -->
+      <p class="hero-welcome">{{ getWelcomeMessage() }}</p>
+
+      <!--
+        CONDITIONAL RENDERING:
+        Shows different content based on theme
+      -->
+      <div class="theme-info">
+        <span class="theme-status">{{ getThemeStatus() }}</span>
+        <button
+          (click)="onToggleTheme()"
+          class="theme-toggle-btn"
+          [class.dark-mode]="currentTheme === 'dark'"
+        >
+          {{ currentTheme === 'dark' ? '☀️ Switch to Light' : '🌙 Switch to Dark' }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section">
+    <h2 class="section-title">What You'll Learn</h2>
+
+    <!--
+      *ngFor STRUCTURAL DIRECTIVE:
+      - Repeats template for each item in array
+      - Creates local template variables (feature, index)
+      - Provides additional context (first, last, even, odd)
+      - trackBy function helps with performance
+    -->
+    <div class="features-grid">
+      <div
+        *ngFor="let feature of features; let i = index; trackBy: trackByTitle"
+        class="feature-card"
+        [class.even]="i % 2 === 0"
+        [class.odd]="i % 2 === 1"
+        (click)="onFeatureClick(feature)"
+        [attr.aria-label]="'Feature: ' + feature.title"
+        tabindex="0"
+        role="button"
+      >
+        <!--
+          PROPERTY BINDING:
+          [property]="expression" sets HTML properties dynamically
+        -->
+        <div class="feature-icon" [title]="feature.title">
+          {{ feature.icon }}
+        </div>
+
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+
+        <!--
+          INDEX USAGE:
+          *ngFor provides an index variable we can use
+        -->
+        <small class="feature-number">Feature #{{ i + 1 }}</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING RESOURCES SECTION -->
+  <section class="resources-section">
+    <h2 class="section-title">Learning Resources</h2>
+    <div class="resources-grid">
+
+      <!--
+        EXTERNAL LINKS:
+        Regular anchor tags for external navigation
+        target="_blank" opens in new tab
+        rel="noopener noreferrer" for security
+      -->
+      <a
+        href="https://angular.io/docs"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resource-link"
+      >
+        <div class="resource-icon">📚</div>
+        <span class="resource-title">Angular Docs</span>
+      </a>
+
+      <a
+        href="https://www.typescriptlang.org/docs"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resource-link"
+      >
+        <div class="resource-icon">🔷</div>
+        <span class="resource-title">TypeScript Guide</span>
+      </a>
+
+      <a
+        href="https://rxjs.dev/guide/overview"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resource-link"
+      >
+        <div class="resource-icon">🔄</div>
+        <span class="resource-title">RxJS Documentation</span>
+      </a>
+
+      <a
+      href="https://sass-lang.com/guide"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="resource-link"
+      >
+      <div class="resource-icon">🎨</div>
+        <span class="resource-title">SCSS Guide</span>
+      </a>
+    </div>
+
+  </section>
+
+</div>
+
+<!--
+  ADDITIONAL TEMPLATE FEATURES NOT SHOWN ABOVE:
+
+  1. Template Reference Variables:
+  <input #nameInput type="text">
+  <button (click)="processName(nameInput.value)">Submit</button>
+
+  2. Safe Navigation Operator:
+  <div>{{ user?.profile?.name }}</div>
+
+  3. Pipes:
+  <div>{{ dateValue | date:'MM/dd/yyyy' }}</div>
+  <div>{{ textValue | uppercase }}</div>
+  <div>{{ numberValue | currency:'USD' }}</div>
+
+  4. NgClass Directive:
+  <div [ngClass]="{ 'active': isActive, 'disabled': isDisabled }"></div>
+
+  5. NgStyle Directive:
+  <div [ngStyle]="{ 'color': textColor, 'font-size.px': fontSize }"></div>
+
+  6. Two-way Binding:
+  <input [(ngModel)]="userName" placeholder="Enter name">
+
+  7. Event with $event:
+  <button (click)="handleClick($event)">Click me</button>
+
+  8. Key Events:
+  <input (keyup.enter)="onEnterKey()" (keyup.escape)="onEscapeKey()">
+
+  9. Form Events:
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+  10. Conditional Attributes:
+  <input [attr.disabled]="isFormDisabled ? 'disabled' : null">
+-->
