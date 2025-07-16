@@ -3,7 +3,7 @@
     <h1 class="page-title">{{ pageTitle }}</h1>
     <p class="page-subtitle">Monitor your key metrics and performance indicators</p>
   </header>
-
+  <div class="dashboard-body">
   <!-- Statistics Cards -->
   <section class="stats-section">
     <div class="stats-grid">
@@ -28,7 +28,7 @@
   <!-- Chart Section -->
   <section class="chart-section">
     <h2 class="section-title">Usage Distribution</h2>
-    <div class="chart-container">
+    <div class="section-container">
       <div class="chart-legend">
         <div
           *ngFor="let item of chartData"
@@ -54,4 +54,13 @@
       </div>
     </div>
   </section>
+
+  <section class="user-section">
+    <h2 class="section-title">Users</h2>
+    <div class="section-container">
+
+    </div>
+
+  </section>
+</div>
 </div>

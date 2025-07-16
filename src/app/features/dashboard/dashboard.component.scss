@@ -4,6 +4,12 @@
   margin: 0 auto;
 }
 
+.dashboard-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
 .dashboard-header {
   margin-bottom: 2rem;
   text-align: center;
@@ -19,10 +25,6 @@
     color: var(--text-secondary);
     font-size: 1.1rem;
   }
-}
-
-.stats-section {
-  margin-bottom: 3rem;
 }
 
 .stats-grid {
@@ -112,20 +114,6 @@
 }
 
 .chart-section {
-  .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .chart-container {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 2rem;
-    border-radius: 12px;
-  }
-
   .chart-legend {
     display: flex;
     gap: 2rem;
@@ -173,6 +161,24 @@
       }
     }
   }
+}
+
+.user-section {
+
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.section-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 2rem;
+  border-radius: 12px;
 }
 
 // Responsive design
