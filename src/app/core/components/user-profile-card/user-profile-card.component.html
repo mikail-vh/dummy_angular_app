@@ -1,0 +1,13 @@
+<div class="user-profile-card-container">
+  <div class="user-profile-card-image-container">
+    <div class="user-profile-card-image-icon">
+      {{ user.gender === 'male' ? '👦' : '👧' }}
+    </div>
+  </div>
+  <div class="user-profile-card-content-container">
+    <div class="user-profile-card-name-container">
+      <h3 class="user-profile-card-name">{{ user.firstName }} {{ user.lastName }}</h3>
+      <p class="user-profile-card-position">{{ user.position }}</p>
+    </div>
+  </div>
+</div>

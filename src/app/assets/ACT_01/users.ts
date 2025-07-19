@@ -5,6 +5,7 @@ export interface User {
   email: string;
   phone: string;
   position: string;
+  gender: string;
 }
 
 export const users: User[] = [
@@ -15,6 +16,7 @@ export const users: User[] = [
     email: 'john.doe@example.com',
     phone: '+1234567890',
     position: 'Software Engineer',
+    gender: 'male',
   },
   {
     id: '2',
@@ -23,6 +25,7 @@ export const users: User[] = [
     email: 'jane.smith@example.com',
     phone: '+1234567890',
     position: 'Product Manager',
+    gender: 'female',
   },
   {
     id: '3',
@@ -31,6 +34,7 @@ export const users: User[] = [
     email: 'jim.beam@example.com',
     phone: '+1234567890',
     position: 'Marketing Manager',
+    gender: 'male',
   },
   {
     id: '4',
@@ -39,6 +43,7 @@ export const users: User[] = [
     email: 'jill.johnson@example.com',
     phone: '+1234567890',
     position: 'Junior Sales Consultant',
+    gender: 'female',
   },
   {
     id: '5',
@@ -47,6 +52,7 @@ export const users: User[] = [
     email: 'jack.brown@example.com',
     phone: '+1234567890',
     position: 'IT Manager',
+    gender: 'male',
   },
   {
     id: '6',
@@ -55,5 +61,6 @@ export const users: User[] = [
     email: 'jake.johnson@example.com',
     phone: '+1234567890',
     position: 'Sales Manager',
+    gender: 'male',
   },
 ]

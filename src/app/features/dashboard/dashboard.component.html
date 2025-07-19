@@ -59,6 +59,12 @@
     <h2 class="section-title">Users</h2>
     <div class="section-container">
 
+      @for (user of newUsers; track user.id) {
+        <div class="user-profile-card-container">
+        <app-user-profile-card [user]="user"></app-user-profile-card>
+      </div>
+      }
+
     </div>
 
   </section>

@@ -179,6 +179,9 @@
   border: 1px solid var(--card-border);
   padding: 2rem;
   border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 // Responsive design
@@ -218,6 +221,11 @@
   .chart-container {
     padding: 1rem;
   }
+}
+
+.user-profile-card-container {
+  width: 30%;
+  margin: 1rem;
 }
 
 // Accessibility

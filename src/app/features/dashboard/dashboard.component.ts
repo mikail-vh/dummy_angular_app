@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserProfileCardComponent } from '../../core/components/user-profile-card/user-profile-card.component';
+import { User, users } from '../../assets/ACT_01/users';
 
 /**
  * DASHBOARD COMPONENT
@@ -30,7 +32,7 @@ interface ChartData {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UserProfileCardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -69,6 +71,8 @@ export class DashboardComponent implements OnInit {
       color: 'purple'
     }
   ];
+
+  newUsers: User[] = users;
 
   // Sample chart data
   chartData: ChartData[] = [
@@ -117,5 +121,9 @@ export class DashboardComponent implements OnInit {
    */
   trackByTitle(index: number, item: StatCard): string {
     return item.title;
+  }
+
+  getUserIcon(gender: string): string {
+    return gender === 'male' ? '/assets/images/male_pfp.png' : '/assets/images/female_pfp.png';
   }
 }
